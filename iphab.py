@@ -471,7 +471,10 @@ def update_drafts_inner(man, db):
 
 def read_config_file():
     global RC
-    rcf = open(".iphab.json", "r")
+    try:
+        rcf = open(".iphab.json", "r")
+    except IOError:
+        die ('Cannot find .iphab.json - you are probably in the wrong directory.')
     RC = json.load(rcf)
 
 def ensure_config(k):
